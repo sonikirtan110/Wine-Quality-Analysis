@@ -197,6 +197,5 @@ This project is open-source under the **MIT License**.
 
 ---
 
-🎯 **Deadline: 08/04/2025**
 
 ✅ **If you found this useful, give it a ⭐ on GitHub!** 🚀
