@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Wine Quality Prediction Tool - Predict the quality of wine based on its chemical properties">
+    <title>Wine Quality Prediction Tool</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Raleway:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --wine-primary: #800020;
+            --wine-secondary: #5e0018;
+            --wine-accent: #a30021;
+            --wine-hover: #c50027;
+            --cream: #fff8e7;
+            --form-spacing: 12px;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .app-container {
+            background: linear-gradient(135deg, var(--wine-primary) 0%, var(--wine-secondary) 100%);
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            color: white;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .header {
+            text-align: center;
+            padding: clamp(20px, 5vw, 40px) clamp(15px, 3vw, 30px);
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 700;
+            margin-bottom: clamp(10px, 2vw, 20px);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            letter-spacing: 1px;
+        }
+
+        .lead {
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .content-wrapper {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            padding: 0 clamp(15px, 3vw, 30px) clamp(20px, 5vw, 40px);
+            gap: 20px;
+        }
+
+        .image-container {
+            flex: 1;
+            min-width: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(10px, 3vw, 20px);
+            position: relative;
+            z-index: 1;
+        }
+
+        .wine-image-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .wine-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.5s ease;
+        }
+
+        .wine-image:hover {
+            transform: scale(1.03);
+        }
+
+        .form-container {
+            flex: 1.5;
+            min-width: 280px;
+            padding: clamp(10px, 3vw, 20px);
+        }
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -10px;
+            gap: 0;
+        }
+
+        .form-group {
+            flex: 1 0 calc(50% - 20px);
+            padding: 0 10px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: clamp(8px, 2vw, 12px);
+            border: none;
+            background-color: var(--cream);
+            border-radius: var(--border-radius);
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+            transition: var(--transition);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+            -webkit-appearance: none;
+            -moz-appearance: textfield;
+        }
+
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: clamp(10px, 2vw, 15px);
+            margin-top: clamp(20px, 4vw, 30px);
+        }
+
+        button {
+            flex: 0 1 auto;
+            min-width: 120px;
+            padding: clamp(10px, 2vw, 12px) clamp(15px, 4vw, 30px);
+            background-color: var(--wine-accent);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+        }
+
+        button:hover {
+            background-color: var(--wine-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        button:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25), var(--box-shadow);
+        }
+
+        .result {
+            margin-top: clamp(20px, 4vw, 30px);
+            padding: clamp(15px, 3vw, 20px);
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: var(--border-radius);
+            text-align: center;
+            font-size: clamp(1rem, 1.5vw, 1.2rem);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .quality-score {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 700;
+            margin: 10px 0;
+        }
+
+        .quality-description {
+            font-style: italic;
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+        }
+
+        /* Animation for result */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+
+            .image-container {
+                order: -1;
+            }
+
+            .wine-image-wrapper {
+                max-width: 350px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-group {
+                flex: 0 0 100%;
+            }
+
+            .buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            button {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .app-container {
+                border-radius: var(--border-radius);
+            }
+
+            .header {
+                padding: 15px 10px;
+            }
+
+            .content-wrapper {
+                padding: 0 10px 20px;
+            }
+
+            .wine-image-wrapper {
+                aspect-ratio: 4 / 3;
+            }
+
+            .form-container {
+                padding: 10px;
+            }
+
+            .form-group {
+                margin-bottom: 15px;
+            }
+
+            label {
+                margin-bottom: 4px;
+            }
+        }
+
+        /* Accessibility improvements */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        /* Focus styles for accessibility */
+        a:focus,
+        button:focus,
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: 2px solid white;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="app-container">
+        <div class="header">
+            <h1>WINE QUALITY PREDICTION</h1>
+            <p class="lead">Enter the chemical properties of your wine to predict its quality rating</p>
+        </div>
+
+        <div class="content-wrapper">
+            <div class="image-container">
+                <div class="wine-image-wrapper">
+                    <picture>
+                        <!-- Smaller image for mobile devices -->
+                        <source media="(max-width: 480px)"
+                            srcset="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wine.jpg-E4RIH7qu78sJGnPLVmUGnSMzkBRTRi.jpeg 480w">
+                        <!-- Medium-sized image for tablets -->
+                        <source media="(max-width: 768px)"
+                            srcset="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wine.jpg-E4RIH7qu78sJGnPLVmUGnSMzkBRTRi.jpeg 768w">
+                        <!-- Full-sized image for desktops -->
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wine.jpg-E4RIH7qu78sJGnPLVmUGnSMzkBRTRi.jpeg"
+                            alt="Wine bottle and glass with splashing red wine" class="wine-image" loading="lazy"
+                            width="400" height="400">
+                    </picture>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <form id="wine-form" action="/predict" method="post">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fixed_acidity">Fixed Acidity</label>
+                            <input type="number" step="0.1" id="fixed_acidity" name="fixed_acidity" placeholder="7.0"
+                                min="0" max="20" aria-describedby="fixed_acidity_help" required>
+                            <span id="fixed_acidity_help" class="sr-only">Enter a value between 0 and 20</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="volatile_acidity">Volatile Acidity</label>
+                            <input type="number" step="0.01" id="volatile_acidity" name="volatile_acidity"
+                                placeholder="0.3" min="0" max="2" aria-describedby="volatile_acidity_help" required>
+                            <span id="volatile_acidity_help" class="sr-only">Enter a value between 0 and 2</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="citric_acid">Citric Acid</label>
+                            <input type="number" step="0.01" id="citric_acid" name="citric_acid" placeholder="0.3"
+                                min="0" max="1" aria-describedby="citric_acid_help" required>
+                            <span id="citric_acid_help" class="sr-only">Enter a value between 0 and 1</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="residual_sugar">Residual Sugar</label>
+                            <input type="number" step="0.1" id="residual_sugar" name="residual_sugar" placeholder="2.0"
+                                min="0" max="50" aria-describedby="residual_sugar_help" required>
+                            <span id="residual_sugar_help" class="sr-only">Enter a value between 0 and 50</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="chlorides">Chlorides</label>
+                            <input type="number" step="0.001" id="chlorides" name="chlorides" placeholder="0.08" min="0"
+                                max="1" aria-describedby="chlorides_help" required>
+                            <span id="chlorides_help" class="sr-only">Enter a value between 0 and 1</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="free_sulfur_dioxide">Free Sulfur Dioxide</label>
+                            <input type="number" step="1" id="free_sulfur_dioxide" name="free_sulfur_dioxide"
+                                placeholder="15" min="0" max="100" aria-describedby="free_sulfur_dioxide_help" required>
+                            <span id="free_sulfur_dioxide_help" class="sr-only">Enter a value between 0 and 100</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="total_sulfur_dioxide">Total Sulfur Dioxide</label>
+                            <input type="number" step="1" id="total_sulfur_dioxide" name="total_sulfur_dioxide"
+                                placeholder="40" min="0" max="300" aria-describedby="total_sulfur_dioxide_help"
+                                required>
+                            <span id="total_sulfur_dioxide_help" class="sr-only">Enter a value between 0 and 300</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="density">Density</label>
+                            <input type="number" step="0.0001" id="density" name="density" placeholder="0.9956"
+                                min="0.9" max="1.1" aria-describedby="density_help" required>
+                            <span id="density_help" class="sr-only">Enter a value between 0.9 and 1.1</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="pH">pH</label>
+                            <input type="number" step="0.01" id="pH" name="pH" placeholder="3.3" min="2.5" max="4.5"
+                                aria-describedby="pH_help" required>
+                            <span id="pH_help" class="sr-only">Enter a value between 2.5 and 4.5</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="sulphates">Sulphates</label>
+                            <input type="number" step="0.01" id="sulphates" name="sulphates" placeholder="0.65" min="0"
+                                max="2" aria-describedby="sulphates_help" required>
+                            <span id="sulphates_help" class="sr-only">Enter a value between 0 and 2</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="alcohol">Alcohol</label>
+                            <input type="number" step="0.1" id="alcohol" name="alcohol" placeholder="10.5" min="8"
+                                max="15" aria-describedby="alcohol_help" required>
+                            <span id="alcohol_help" class="sr-only">Enter a value between 8 and 15</span>
+                        </div>
+                    </div>
+
+                    <div class="buttons">
+                        <button type="submit">Predict Quality</button>
+                        <button type="reset">Clear Entries</button>
+                    </div>
+                </form>
+
+                <div id="result" class="result" style="display: none;" aria-live="polite">
+                    <h3>Prediction Result</h3>
+                    <div class="quality-score">0.0/10</div>
+                    <div class="quality-description">Enter wine properties to see prediction</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('wine-form');
+            const resultDiv = document.getElementById('result');
+
+            // Add input validation
+            const inputs = form.querySelectorAll('input[type="number"]');
+            inputs.forEach(input => {
+                input.addEventListener('input', function () {
+                    const value = parseFloat(this.value);
+                    const min = parseFloat(this.min);
+                    const max = parseFloat(this.max);
+
+                    if (value < min) {
+                        this.setCustomValidity(`Value should be at least ${min}`);
+                    } else if (value > max) {
+                        this.setCustomValidity(`Value should be at most ${max}`);
+                    } else {
+                        this.setCustomValidity('');
+                    }
+                });
+            });
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                // In a real application, you would send the form data to the server
+                // and get back a prediction. For this example, we'll simulate a prediction.
+
+                // Get form values
+                const fixedAcidity = parseFloat(document.getElementById('fixed_acidity').value);
+                const volatileAcidity = parseFloat(document.getElementById('volatile_acidity').value);
+                const citricAcid = parseFloat(document.getElementById('citric_acid').value);
+                const residualSugar = parseFloat(document.getElementById('residual_sugar').value);
+                const chlorides = parseFloat(document.getElementById('chlorides').value);
+                const freeSulfurDioxide = parseFloat(document.getElementById('free_sulfur_dioxide').value);
+                const totalSulfurDioxide = parseFloat(document.getElementById('total_sulfur_dioxide').value);
+                const density = parseFloat(document.getElementById('density').value);
+                const pH = parseFloat(document.getElementById('pH').value);
+                const sulphates = parseFloat(document.getElementById('sulphates').value);
+                const alcohol = parseFloat(document.getElementById('alcohol').value);
+
+                // Simple mock algorithm (in a real app, this would come from the server)
+                // This is a simplified version of what might be used in a real wine quality model
+                let quality = 0;
+
+                // Higher alcohol generally means better quality
+                quality += (alcohol - 8) / 7 * 3;
+
+                // Lower volatile acidity is better
+                quality += (1 - volatileAcidity / 1.2) * 2;
+
+                // Higher sulphates generally correlate with better wine
+                quality += (sulphates / 1) * 1.5;
+
+                // Optimal pH is around 3.3
+                quality += (1 - Math.abs(pH - 3.3) / 1) * 1.5;
+
+                // Free sulfur dioxide should be in a good range
+                const optimalFSD = 35;
+                quality += (1 - Math.abs(freeSulfurDioxide - optimalFSD) / optimalFSD) * 1;
+
+                // Lower chlorides generally better
+                quality += (1 - chlorides / 0.2) * 1;
+
+                // Scale to 0-10 range and clamp between 3 and 9
+                quality = 5 + quality;
+                quality = Math.min(Math.max(quality, 3), 9);
+                quality = quality.toFixed(1);
+
+                // Determine quality description
+                let description;
+                if (quality >= 7.5) {
+                    description = "Excellent Quality - Premium wine with exceptional characteristics";
+                } else if (quality >= 6) {
+                    description = "Good Quality - Above average wine with pleasant attributes";
+                } else if (quality >= 5) {
+                    description = "Average Quality - Standard wine with typical characteristics";
+                } else {
+                    description = "Below Average - Wine may benefit from improvement";
+                }
+
+                // Update and show result
+                resultDiv.querySelector('.quality-score').textContent = quality + "/10";
+                resultDiv.querySelector('.quality-description').textContent = description;
+
+                resultDiv.style.display = "block";
+                resultDiv.classList.remove('fade-in');
+                void resultDiv.offsetWidth; // Trigger reflow
+                resultDiv.classList.add('fade-in');
+
+                // Scroll to the result
+                resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+
+            // Reset result when form is cleared
+            form.addEventListener('reset', function () {
+                resultDiv.style.display = "none";
+            });
+        });
+    </script>
+</body>
+
+</html>
