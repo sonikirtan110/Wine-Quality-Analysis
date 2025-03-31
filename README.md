@@ -24,7 +24,7 @@ Wine-Quality-Prediction
 ├── docs                  # Project documentation
 │   ├── report.pdf
 │
-├── images                # Power BI & UI screenshots
+├── Images                # Power BI & UI screenshots
 │   ├── index.png
 │   ├── overview.png
 │   ├── analysis.png
@@ -86,20 +86,72 @@ We implemented **5 ML models**:
 ---
 
 ## 🔥 Power BI Dashboard (Screenshots)
-| Page | Description |
-|------|------------|
-| ![Index](images/index.png) | Dataset Overview & Distribution |
-| ![Overview](images/overview.png) | Feature Engineering & Insights |
-| ![Analysis](images/analysis.png) | Model Performance Comparison |
+
+### Index Page
+![Index Page](./Images/index.png)
+
+### Overview Page
+![Overview Page](./Images/overview.png)
+
+### Analysis Page
+![Analysis Page](./Images/analysis.png)
+
+### HTML UI
+![HTML UI](./Images/html_ui.png)
 
 ---
 
-## 📌 Code Explanation (src Folder)
-| File | Description |
-|------|------------|
-| `data_preprocessing.py` | Handles data cleaning, missing values, and feature engineering |
-| `model_training.py` | Trains the ML models and saves them as `.pkl` files |
-| `model_evaluation.py` | Evaluates trained models and generates reports |
+## 📊 Dashboard Sections
+
+### 📋 Index Page
+The **Index Page** provides an overall summary of the wine dataset and distribution, including:
+- Total number of wine samples (both red and white)
+- Distribution of wine quality
+- Summary statistics of key features
+- Correlation between different wine properties
+- Percentage of each wine type in the dataset
+
+This page serves as the entry point to understand the dataset before diving into model details.
+
+---
+
+### 🔍 Overview Page
+The **Overview Page** focuses on the data preprocessing steps and feature importance:
+- Feature engineering techniques applied
+- Importance of each feature in predicting wine quality
+- Distribution of features across different quality levels
+- Outlier detection and handling strategies
+- Data transformation methods used
+
+This section helps understand which chemical properties have the most significant impact on wine quality.
+
+---
+
+### 📈 Analysis Page
+The **Analysis Page** provides a comprehensive view of model performance:
+- Comparison of accuracy, precision, recall, and F1-score across all models
+- Confusion matrices for each model
+- ROC curves and AUC scores
+- Detailed performance metrics for both red and white wine predictions
+- Model hyperparameters and optimization results
+
+This section helps identify which model performs best for wine quality prediction.
+
+---
+
+## 📌 Source Code (src Folder)
+
+### app.py
+The `app.py` file is the FastAPI web application that serves as the prediction interface. It:
+- Loads the trained machine learning models
+- Exposes API endpoints for wine quality prediction
+- Provides a simple HTML user interface for input and results
+- Handles both red and white wine prediction requests
+- Returns prediction results with confidence scores
+- Includes data validation and error handling
+- Offers documentation via Swagger UI
+
+The application is built with FastAPI for high performance and easy deployment, making the wine quality prediction model accessible through a web interface or API calls.
 
 ---
 
@@ -148,4 +200,3 @@ This project is open-source under the **MIT License**.
 🎯 **Deadline: 08/04/2025**
 
 ✅ **If you found this useful, give it a ⭐ on GitHub!** 🚀
-
