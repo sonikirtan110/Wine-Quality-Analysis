@@ -16,6 +16,8 @@ Wine-Quality-Prediction
 │
 ├── src                   # Python scripts for preprocessing & model training
 │   ├── app.py
+│        ├── templets
+│            ├── index.html
 │
 ├── models                # Saved trained models
 │   ├── wine_quality_pipeline.pkl
