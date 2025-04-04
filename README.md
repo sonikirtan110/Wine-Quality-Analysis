@@ -1,9 +1,12 @@
+---
+
 # 🍷 Wine Quality Prediction
 
 ## 📌 Project Overview
 The **Wine Quality Prediction** project aims to analyze the quality of wine (both red and white) based on its chemical composition using **Machine Learning models**. This project includes **data preprocessing, model training, evaluation, and visualization** in **Power BI**.
 
 ---
+
 ## 📂 Folder Structure
 ```
 Wine-Quality-Prediction
@@ -16,8 +19,8 @@ Wine-Quality-Prediction
 │
 ├── src                   # Python scripts for preprocessing & model training
 │   ├── app.py
-│        ├── templates
-│            ├── index.html
+│       └── templates
+│           └── index.html
 │
 ├── models                # Saved trained models
 │   ├── wine_quality_pipeline.pkl
@@ -86,10 +89,9 @@ We implemented **5 ML models**:
 - **Analysis Page:** Model performance comparison
 
 ### **Live Preview**
-- **PowerBi Live Preview:**[Click Here](https://app.powerbi.com/view?r=eyJrIjoiOTIwYWYyY2MtOTZiYS00MWUxLWI3NzgtMmFkYTFjMmZmMDZlIiwidCI6ImRhYTU5MmNhLWRlN2ItNGM1NC04ODM2LTkxYTY2OTBmZTE5NyJ9&pageName=dd74d0105ec518cb7330)
-- **NovyPro Live Preview:**[Novypro Live](https://project.novypro.com/PVlKsk)
-- **Ui Live Privew:**[Redirect To Render](https://wine-quality-analysis-38rf.onrender.com)
-
+- **PowerBi Live Preview:** [Click Here](https://app.powerbi.com/view?r=eyJrIjoiOTIwYWYyY2MtOTZiYS00MWUxLWI3NzgtMmFkYTFjMmZmMDZlIiwidCI6ImRhYTU5MmNhLWRlN2ItNGM1NC04ODM2LTkxYTY2OTBmZTE5NyJ9&pageName=dd74d0105ec518cb7330)
+- **NovyPro Live Preview:** [Novypro Live](https://project.novypro.com/PVlKsk)
+- **UI Live Preview:** [Redirect To Render](https://wine-quality-analysis-38rf.onrender.com)
 
 ---
 
@@ -150,7 +152,7 @@ This section helps identify which model performs best for wine quality predictio
 ## 📌 Source Code (src Folder)
 
 ### app.py
-The `app.py` file is the FastAPI web application that serves as the prediction interface. It:
+The `app.py` file is the web application that serves as the prediction interface. It:
 - Loads the trained machine learning models
 - Exposes API endpoints for wine quality prediction
 - Provides a simple HTML user interface for input and results
@@ -159,7 +161,7 @@ The `app.py` file is the FastAPI web application that serves as the prediction i
 - Includes data validation and error handling
 - Offers documentation via Swagger UI
 
-The application is built with FastAPI for high performance and easy deployment, making the wine quality prediction model accessible through a web interface or API calls.
+The application is built with Flask for high performance and easy deployment, making the wine quality prediction model accessible through a web interface or API calls.
 
 ---
 
@@ -167,15 +169,15 @@ The application is built with FastAPI for high performance and easy deployment, 
 All required Python libraries are listed in `requirements.txt`.
 
 ```
-numpy
-pandas
-scikit-learn
-matplotlib
-seaborn
-jupyterlab
-fastapi
-uvicorn
-powerbiclient
+Flask==2.0.3
+Werkzeug==2.0.3
+gunicorn==20.1.0
+joblib==1.2.0
+numpy==1.23.5
+pandas==1.5.3
+scikit-learn==1.4.2
+matplotlib==3.6.2
+seaborn==0.12.2
 ```
 
 Install them using:
@@ -194,9 +196,38 @@ pip install -r requirements.txt
 
 ---
 
+## 🔄 How to Clone This Repository
+To clone this repository, follow these steps:
+
+1. **Open a Terminal or Command Prompt.**
+2. **Run the Clone Command:**
+   ```bash
+   git clone https://github.com/<your-username>/Wine-Quality-Prediction.git
+   ```
+   Replace `<your-username>` with your actual GitHub username.
+3. **Navigate to the Project Directory:**
+   ```bash
+   cd Wine-Quality-Prediction
+   ```
+4. **Install the Required Dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+5. **Run the Application:**
+   For local testing:
+   ```bash
+   python src/app.py
+   ```
+   For deployment using Gunicorn:
+   ```bash
+   gunicorn --bind 0.0.0.0:$PORT src.app:app
+   ```
+
+---
+
 ## 📌 Contact Information
 📧 Email: [sonikirtan2004@gmail.com](mailto:sonikirtan2004@gmail.com)  
-🔗 LinkedIn: [Kirtan Soni](https://www.linkedin.com/in/kirtansoni02/)  
+🔗 LinkedIn: [Kirtan Soni](https://www.linkedin.com/in/kirtansoni02/)
 
 ---
 
@@ -205,5 +236,6 @@ This project is open-source under the **MIT License**.
 
 ---
 
-
 ✅ **If you found this useful, give it a ⭐ on GitHub!** 🚀
+
+---
