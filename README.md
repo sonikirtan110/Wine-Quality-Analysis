@@ -16,7 +16,7 @@ Wine-Quality-Prediction
 │
 ├── src                   # Python scripts for preprocessing & model training
 │   ├── app.py
-│        ├── templets
+│        ├── templates
 │            ├── index.html
 │
 ├── models                # Saved trained models
