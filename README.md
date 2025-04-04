@@ -83,6 +83,11 @@ We implemented **5 ML models**:
 - **Overview Page:** Data preprocessing & feature importance
 - **Analysis Page:** Model performance comparison
 
+### **Live Preview**
+- **PowerBi Live Preview:**[Click Here](https://app.powerbi.com/view?r=eyJrIjoiOTIwYWYyY2MtOTZiYS00MWUxLWI3NzgtMmFkYTFjMmZmMDZlIiwidCI6ImRhYTU5MmNhLWRlN2ItNGM1NC04ODM2LTkxYTY2OTBmZTE5NyJ9&pageName=dd74d0105ec518cb7330)
+- **NovyPro Live Preview:**[Novypro Live](https://project.novypro.com/PVlKsk)
+
+
 ---
 
 ## 🔥 Power BI Dashboard (Screenshots)
