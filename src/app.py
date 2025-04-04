@@ -5,7 +5,7 @@ import os
 
 # Set the template folder to the correct location.
 # Change "src/templets" to "src/templates" if you prefer that naming convention.
-app = Flask(__name__, template_folder="src/templets")
+app = Flask(__name__, template_folder="src/templates")
 
 # Load the complete pipeline (preprocessing + model) from the pickle file.
 # Ensure the path is correct relative to your project root.
