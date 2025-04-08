@@ -5,6 +5,10 @@
 ## 📌 Project Overview
 The **Wine Quality Prediction** project aims to analyze the quality of wine (both red and white) based on its chemical composition using **Machine Learning models**. This project includes **data preprocessing, model training, evaluation, and visualization** in **Power BI**.
 
+### 👨‍💻 Team Members:
+- **Kirtan Soni** – Enrollment No: `12202040501032`  
+- **Harry Mehta** – Enrollment No: `12202040501025`
+
 ---
 
 ## 📂 Folder Structure
@@ -38,6 +42,15 @@ Wine-Quality-Prediction
 ├── README.md             # Project description
 ├── requirements.txt      # Required Python libraries
 ├── LICENSE               # Open-source license
+```
+
+---
+
+(✅ All remaining content stays exactly the same.)
+
+---
+
+Would you like me to now generate this into a **Word (`.docx`) or PDF file** for you? Let me know your preferred format and filename!
 ```
 
 ---
