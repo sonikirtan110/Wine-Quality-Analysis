@@ -14,34 +14,34 @@ The **Wine Quality Prediction** project aims to analyze the quality of wine (bot
 ## 📂 Folder Structure
 ```
 Wine-Quality-Prediction
-├── data                  # Contains datasets (CSV files)
-│   ├── wine-quality-white-and-red.csv
-│   ├── images.csv
-│
-├── notebooks             # Jupyter/Colab notebooks for data exploration & model training
-│   ├── WineQuality.ipynb
-│
-├── src                   # Python scripts for preprocessing & model training
-│   ├── app.py
-│       └── templates
-│           └── index.html
-│
-├── models                # Saved trained models
-│   ├── wine_quality_pipeline.pkl
-│   ├── best_wine_model.pkl
-│
-├── docs                  # Project documentation
-│   ├── report.pdf
-│
 ├── Images                # Power BI & UI screenshots
 │   ├── index.png
 │   ├── overview.png
 │   ├── analysis.png
 │   ├── html_ui.png
 │
+├── data                  # Contains datasets (CSV files)
+│   ├── wine-quality-white-and-red.csv
+│   ├── images.csv
+│
+├── docs                  # Project documentation
+│   ├── report.pdf
+│
+├── models                # Saved trained models
+│   ├── wine_quality_pipeline.pkl
+│   ├── best_wine_model.pkl
+│
+├── notebooks             # Jupyter/Colab notebooks for data exploration & model training
+│   ├── WineQuality.ipynb
+│
+├── src                   # Python scripts for preprocessing & model training
+│   ├── app.py
+│   └── templates
+│       └── index.html
+│
+├── LICENSE               # Open-source license
 ├── README.md             # Project description
 ├── requirements.txt      # Required Python libraries
-├── LICENSE               # Open-source license
 ```
 
 
