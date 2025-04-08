@@ -44,14 +44,7 @@ Wine-Quality-Prediction
 ├── LICENSE               # Open-source license
 ```
 
----
 
-(✅ All remaining content stays exactly the same.)
-
----
-
-Would you like me to now generate this into a **Word (`.docx`) or PDF file** for you? Let me know your preferred format and filename!
-```
 
 ---
 
