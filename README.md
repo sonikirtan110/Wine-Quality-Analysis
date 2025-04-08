@@ -86,7 +86,6 @@ We implemented **5 ML models**:
 ### **3️⃣ Model Evaluation**
 - **Accuracy Score**
 - **Precision, Recall, and F1-Score**
-- **Confusion Matrix & ROC Curve**
 - **Power BI Visualizations** 📊
 
 ### **4️⃣ Power BI Dashboard**
