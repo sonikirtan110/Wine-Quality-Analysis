@@ -7,7 +7,7 @@ The **Wine Quality Prediction** project aims to analyze the quality of wine (bot
 
 ### 👨‍💻 Team Members:
 - **Kirtan Soni** – Enrollment No: `12202040501032`  
-- **Harry Mehta** – Enrollment No: `12202040501025`
+- **Harry Mehta** – Enrollment No: `12202040501025` [Github](https://github.com/harry200409/Wine-Quality-Prediction)
 
 ---
 
