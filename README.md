@@ -5,10 +5,6 @@
 ## 📌 Project Overview  
 The **Wine Quality Prediction** project analyzes the quality of wine (red and white) based on its chemical properties using **Machine Learning models**. It includes data preprocessing, model training, evaluation, and **Power BI visualization**.
 
-### 👨‍💻 Team Members
-- **Kirtan Soni** – Enrollment No: `12202040501032`  
-- **Harry Mehta** – Enrollment No: `12202040501025` [GitHub](https://github.com/harry200409/Wine-Quality-Prediction)
-
 ---
 
 ## 📂 Folder Structure
